@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableKho extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateTableKho extends Migration
      */
     public function up()
     {
-        Schema::create('kho', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ten_kho');
-            $table->string('diachi_kho');
-            $table->string('sdt_kho',11);
-            // $table->integer('chukho_id');
-            $table->unsignedBigInteger('chukho_id');
-            $table->foreign('chukho_id')->references('id')->on('nguoidung');
+            $table->string('name');
+            $table->text('description');
+            $table->decimal('price',9,3);
+            $table->integer('amount');
+            // $table->integer('kho_id');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->timestamps();
         });
     }
@@ -32,7 +33,7 @@ class CreateTableKho extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kho');
+        Schema::dropIfExists('products');
         Schema::enableForeignKeyConstraints();
     }
 }

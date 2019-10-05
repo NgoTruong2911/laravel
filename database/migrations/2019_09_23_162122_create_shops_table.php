@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableNguoidung extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateTableNguoidung extends Migration
      */
     public function up()
     {
-        Schema::create('nguoidung', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->date('ngaysinh');
-            $table->string('sdt_nguoidung',11);
-            $table->string('email');
-            $table->string('password');
-            $table->integer('role');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->time('start_time_work');
+            $table->time('end_time_work');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateTableNguoidung extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nguoidung');
+        Schema::dropIfExists('shops');
     }
 }
